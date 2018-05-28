@@ -3,4 +3,6 @@
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
+COPY fs/ /
+
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
