@@ -3,6 +3,7 @@ set -e
 
 dump_all=
 dump_dir=/var/run/container/environment
+dump_strict=
 
 while test $# -gt 0; do
   arg="$1"
@@ -14,6 +15,10 @@ while test $# -gt 0; do
     -o|--out)
       dump_dir="$2"
       shift
+      shift
+      ;;
+    -s|--strict)
+      dump_strict=1
       shift
       ;;
     --)
@@ -45,7 +50,9 @@ fi
 for variable_to_dump in $variables_to_dump; do
   echo "Dumping \$$variable_to_dump to $dump_dir..."
   if ! (umask 0277 && printenv "$variable_to_dump" > "$dump_dir/$variable_to_dump"); then
-    >&2 echo "Variable $variable_to_dump is not set"
-    exit 1
+    >&2 echo "Warning: variable $variable_to_dump is not set"
+    if test -n "$dump_strict"; then
+      exit 1
+    fi
   fi
 done
