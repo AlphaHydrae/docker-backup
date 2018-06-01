@@ -4,7 +4,7 @@ set -e
 mkfifo /var/log/backup.log
 tail -f /var/log/backup.log &
 
-/usr/local/bin/dumpenv.sh BUNDLE_APP_CONFIG BUNDLE_PATH BUNDLE_SILENCE_ROOT_WARNING GEM_HOME PATH $BACKUP_DUMPENV
+/usr/local/bin/dumpenv.sh BACKUP_DATA_PATH BACKUP_TMP_PATH BUNDLE_APP_CONFIG BUNDLE_PATH BUNDLE_SILENCE_ROOT_WARNING GEM_HOME PATH $BACKUP_DUMPENV
 
 schedule_header_file=/backup/schedule-header.rb
 schedule_file=/backup/schedule.rb

@@ -13,4 +13,7 @@ RUN apt-get update && \
 
 COPY fs/ /
 
+ENV BACKUP_DATA_PATH="/var/lib/backups" \
+    BACKUP_TMP_PATH="/tmp/backup"
+
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
