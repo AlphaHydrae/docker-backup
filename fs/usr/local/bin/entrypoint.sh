@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-mkfifo /var/log/backup.log
+[ ! -e /var/log/backup.log ] && mkfifo /var/log/backup.log
 tail -f /var/log/backup.log &
 
 /usr/local/bin/dumpenv.sh BACKUP_DATA_PATH BACKUP_TMP_PATH BUNDLE_APP_CONFIG BUNDLE_PATH BUNDLE_SILENCE_ROOT_WARNING GEM_HOME PATH $BACKUP_DUMPENV
