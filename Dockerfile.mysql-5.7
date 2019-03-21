@@ -1,0 +1,23 @@
+FROM ruby:2.5.1-slim
+
+WORKDIR /usr/src/app
+
+COPY Gemfile Gemfile.lock /usr/src/app/
+
+RUN apt-get update && \
+    apt-get install -y build-essential cron && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 8C718D3B5072E1F5 && \
+    echo "deb http://repo.mysql.com/apt/debian/ stretch mysql-5.7" | tee /etc/apt/sources.list.d/mysql-5.7.list && \
+    apt-get update && \
+    apt-get install -y mysql-community-client && \
+    bundle install && \
+    apt-get remove -y build-essential && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY fs/ /
+
+ENV BACKUP_DATA_PATH="/var/lib/backups" \
+    BACKUP_TMP_PATH="/tmp/backup"
+
+ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
