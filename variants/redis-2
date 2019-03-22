@@ -1,0 +1,8 @@
+    apt-get install -y wget && \
+    wget http://download.redis.io/releases/redis-2.8.24.tar.gz && \
+    tar -xzf redis-2.8.24.tar.gz && \
+    cd redis-2.8.24 && \
+    make redis-cli && \
+    cp src/redis-cli /usr/local/bin/ && \
+    rm -fr redis-2.8.24 redis-2.8.24.tar.gz && \
+    apt-get remove -y wget && \

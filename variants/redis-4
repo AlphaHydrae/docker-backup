@@ -1,0 +1,8 @@
+    apt-get install -y wget && \
+    wget http://download.redis.io/releases/redis-4.0.14.tar.gz && \
+    tar -xzf redis-4.0.14.tar.gz && \
+    cd redis-4.0.14 && \
+    make redis-cli && \
+    cp src/redis-cli /usr/local/bin/ && \
+    rm -fr redis-4.0.14 redis-4.0.14.tar.gz && \
+    apt-get remove -y wget && \
