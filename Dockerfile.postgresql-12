@@ -7,12 +7,10 @@ COPY Gemfile Gemfile.lock /usr/src/app/
 RUN apt-get update && \
     apt-get install -y build-essential cron && \
     apt-get install -y wget && \
-    wget http://download.redis.io/releases/redis-2.8.24.tar.gz && \
-    tar -xzf redis-2.8.24.tar.gz && \
-    cd redis-2.8.24 && \
-    make redis-cli && \
-    cp src/redis-cli /usr/local/bin/ && \
-    rm -fr redis-2.8.24 redis-2.8.24.tar.gz && \
+    echo 'deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main' >> /etc/apt/sources.list.d/pgdg.list && \
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+    apt-get update && \
+    apt-get install -y postgresql-client-12 && \
     apt-get remove -y wget && \
     gem install bundler -v "~> 2.0" && \
     bundle install && \
