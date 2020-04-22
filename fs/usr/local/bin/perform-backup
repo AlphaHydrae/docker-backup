@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+exec /usr/local/bin/with-contenv.sh /usr/local/bundle/bin/backup perform \
+  --no-logfile \
+  --config-file /backup/config.rb \
+  --data-path "${BACKUP_DATA_PATH:-/var/lib/backups}" \
+  --tmp-path "${BACKUP_TMP_PATH:-/tmp/backup}" \
+  --trigger "$@" 2>&1 | tee -a /var/log/backup.log
