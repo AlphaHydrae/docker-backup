@@ -1,4 +1,4 @@
-FROM ruby:2.5.8-slim
+FROM ruby:2.5.8-slim-stretch
 
 WORKDIR /usr/src/app
 
