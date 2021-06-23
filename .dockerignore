@@ -1,5 +1,6 @@
-.git
-samples
-templates
-update.sh
-variants
+# https://docs.docker.com/engine/reference/builder/#dockerignore-file
+/.git
+/samples
+/templates
+/update.sh
+/variants
