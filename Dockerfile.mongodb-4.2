@@ -6,13 +6,11 @@ COPY Gemfile Gemfile.lock /usr/src/app/
 
 RUN apt-get update && \
     apt-get install -y build-essential cron libcurl4-openssl-dev libxml2-dev && \
-    apt-get install -y wget && \
-    echo 'deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main' >> /etc/apt/sources.list.d/pgdg.list && \
-    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 4B7C549A058F8B6B && \
+    echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main" | tee /etc/apt/sources.list.d/mongodb-org-4.2.list && \
     apt-get update && \
-    apt-get install -y postgresql-client-13 && \
-    apt-get remove -y wget && \
-    pg_dump --version && \
+    apt-get install -y mongodb-org-tools=4.2.14 && \
+    mongodump --version && \
     gem install bundler -v "~> 2.0" && \
     bundle install && \
     apt-get remove -y build-essential && \

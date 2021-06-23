@@ -7,13 +7,14 @@ COPY Gemfile Gemfile.lock /usr/src/app/
 RUN apt-get update && \
     apt-get install -y build-essential cron libcurl4-openssl-dev libxml2-dev && \
     apt-get install -y wget && \
-    wget http://download.redis.io/releases/redis-5.0.9.tar.gz && \
-    tar -xzf redis-5.0.9.tar.gz && \
-    cd redis-5.0.9 && \
+    wget http://download.redis.io/releases/redis-5.0.12.tar.gz && \
+    tar -xzf redis-5.0.12.tar.gz && \
+    cd redis-5.0.12 && \
     make redis-cli && \
     cp src/redis-cli /usr/local/bin/ && \
-    rm -fr redis-5.0.9 redis-5.0.9.tar.gz && \
+    rm -fr redis-5.0.12 redis-5.0.12.tar.gz && \
     apt-get remove -y wget && \
+    redis-cli --version && \
     gem install bundler -v "~> 2.0" && \
     bundle install && \
     apt-get remove -y build-essential && \

@@ -7,6 +7,7 @@ COPY Gemfile Gemfile.lock /usr/src/app/
 RUN apt-get update && \
     apt-get install -y build-essential cron libcurl4-openssl-dev libxml2-dev && \
     apt-get install -y sqlite3 && \
+    sqlite3 --version && \
     gem install bundler -v "~> 2.0" && \
     bundle install && \
     apt-get remove -y build-essential && \

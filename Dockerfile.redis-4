@@ -14,6 +14,7 @@ RUN apt-get update && \
     cp src/redis-cli /usr/local/bin/ && \
     rm -fr redis-4.0.14 redis-4.0.14.tar.gz && \
     apt-get remove -y wget && \
+    redis-cli --version && \
     gem install bundler -v "~> 2.0" && \
     bundle install && \
     apt-get remove -y build-essential && \

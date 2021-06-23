@@ -6,10 +6,11 @@ COPY Gemfile Gemfile.lock /usr/src/app/
 
 RUN apt-get update && \
     apt-get install -y build-essential cron libcurl4-openssl-dev libxml2-dev && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4 && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 68818C72E52529D4 && \
     echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.0 main" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list && \
     apt-get update && \
-    apt-get install -y mongodb-org-tools=4.0.18 && \
+    apt-get install -y mongodb-org-tools=4.0.25 && \
+    mongodump --version && \
     gem install bundler -v "~> 2.0" && \
     bundle install && \
     apt-get remove -y build-essential && \
