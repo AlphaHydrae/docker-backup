@@ -5,4 +5,4 @@ WORKDIR /usr/src/app
 COPY Gemfile Gemfile.lock /usr/src/app/
 
 RUN apt-get update && \
-    apt-get install -y build-essential cron && \
+    apt-get install -y build-essential cron libcurl4-openssl-dev libxml2-dev && \
