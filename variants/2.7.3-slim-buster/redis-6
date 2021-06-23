@@ -1,0 +1,9 @@
+    apt-get install -y wget && \
+    wget http://download.redis.io/releases/redis-6.2.4.tar.gz && \
+    tar -xzf redis-6.2.4.tar.gz && \
+    cd redis-6.2.4 && \
+    make redis-cli && \
+    cp src/redis-cli /usr/local/bin/ && \
+    rm -fr redis-6.2.4 redis-6.2.4.tar.gz && \
+    apt-get remove -y wget && \
+    redis-cli --version && \
