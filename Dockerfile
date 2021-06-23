@@ -1,11 +1,11 @@
-FROM ruby:2.5.8-slim-stretch
+FROM ruby:2.7.3-slim-buster
 
 WORKDIR /usr/src/app
 
 COPY Gemfile Gemfile.lock /usr/src/app/
 
 RUN apt-get update && \
-    apt-get install -y build-essential cron && \
+    apt-get install -y build-essential cron libcurl4-openssl-dev libxml2-dev && \
     gem install bundler -v "~> 2.0" && \
     bundle install && \
     apt-get remove -y build-essential && \

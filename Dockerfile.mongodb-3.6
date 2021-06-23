@@ -1,11 +1,11 @@
-FROM ruby:2.5.8-slim-stretch
+FROM ruby:2.7.3-slim-buster
 
 WORKDIR /usr/src/app
 
 COPY Gemfile Gemfile.lock /usr/src/app/
 
 RUN apt-get update && \
-    apt-get install -y build-essential cron && \
+    apt-get install -y build-essential cron libcurl4-openssl-dev libxml2-dev && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5 && \
     echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/3.6 main" | tee /etc/apt/sources.list.d/mongodb-org-3.6.list && \
     apt-get update && \
